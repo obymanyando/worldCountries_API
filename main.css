@@ -128,8 +128,13 @@ input:focus {
     display: inline-block;
     margin: 2px;
     border-radius: 30px;
+    outline: none;
     outline: 1px solid #F2A93B transparent;
     background-color: #F2A93B;
+}
+
+.btn__style:focus {
+    background-color: rgb(182, 236, 196);
 }
 .page__footer {
     text-align: center;
