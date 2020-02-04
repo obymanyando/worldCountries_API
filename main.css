@@ -127,3 +127,6 @@ input:focus {
     outline: 1px solid #F2A93B transparent;
     background-color: #F2A93B;
 }
+.page__footer {
+    text-align: center;
+}
