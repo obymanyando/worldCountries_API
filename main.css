@@ -17,7 +17,7 @@ body {
     background-color: #F3F3F3;
 }
 
-.flex-container>div {
+.country__block {
     width: 200px;
     margin: 5px;
     font-size: 11px;
@@ -27,12 +27,12 @@ body {
     transition: width 1s, height 1s;
 }
 
-.flex-container>div>h3 {
+.country__block>h1 {
     text-align: center;
     color: #F2A93B;
 }
 
-.flex-container>div>p {
+.country__block>p {
     margin-left: 5px;
 }
 
@@ -96,19 +96,23 @@ img {
     margin: 15px auto;
 }
 
-.header__form {
+.filter {
     width: 100%
 }
 
-.form__search>input {
+.filter__searchField {
     width: 40%;
     text-align: center;
     display: inline-block;
     padding: 10px 30px;
     border-radius: 30px;
-    margin-bottom: 15px;
+    margin: 15px auto;
     /* outline: 1px solid transparent; */
     outline: none;
+}
+
+.filter__btn {
+    margin-bottom: 15px;
 }
 
 input:focus {

@@ -10,6 +10,8 @@ const searchField = document.querySelector('.form__searchField')
 
 // Fetch method to be used in production
 
+// ? fields = name; capital; languages; flag
+
 const url = "https://restcountries.eu/rest/v2/all"
 const fetchCountries = (arr) =>
 {
@@ -34,33 +36,35 @@ const fetchCountries = (arr) =>
                 //     langs.push(language.name)
                 // }
 
-                const langs = languages.map((langauge) => langauge.name)
-
-
-
+                const langs = languages.map((language) => language.name)
 
                 countryList += `<div>
-                            <img src=${flag}>
-                            <h3>${name.toUpperCase()}</h3>
-                            <p>Capital: ${capital}</p>
-                            <p>Languages: ${langs.join(', ')}</p>
-                            <p>Population: ${population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</p>
-                            </div>`
+                                <img src=${flag}>
+                                <h3>${name.toUpperCase()}</h3>
+                                <p>Capital: ${capital}</p>
+                                <p>Languages: ${langs.join(', ')}</p>
+                                <p>Population: ${population}</p>
+                                </div>`
 
             }
-            console.log(countries.languages)
+
             flexContainer.innerHTML = countryList
-        })
+        }
+        )
 
     //total number of countries
     function numOfCountries()
     {
-        totalCountries.textContent = countries.length;
+        totalCountries.textContent = country.name.length;
         totalCountries.style.color = 'green'
         totalCountries.style.fontSize = '20px'
     }
-    numOfCountries()
+    // numOfCountries()
+    console.log(totalCountries.value)
 }
+fetchCountries()
+
+// .toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
 
 
@@ -85,4 +89,4 @@ searchByPopulation.addEventListener('click', filterPop =>
     console.log(searchByPopulation)
 })
 
-window.onload = fetchCountries()
+// window.onload = fetchCountries(countries)
