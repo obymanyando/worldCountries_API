@@ -12,61 +12,64 @@
 </head>
 
 <body>
+    <div class="page__container">
+        <header>
+            <div class="page__header">
 
-    <header>
-        <div class="page__header">
-
-            <div class="header__title">
-                <div class="title__h1">
-                    <h1>World Countries Data</h1>
+                <div class="header__title">
+                    <div class="title__h1">
+                        <h1>World Countries Data</h1>
+                    </div>
+                    <div>
+                        <p class="title__totalCountries">We currently have <span id="counterSpan"></span> countries in
+                            our
+                            list.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <p class="title__totalCountries">We currently have <span id="counterSpan"></span> countries in our
-                        list.
+
+                <div class="filter">
+                    <div class="filter__search">
+                        <input type="text" class="filter__searchField" name="searchField"
+                            placeholder="Seach country by name, city or language">
+                    </div>
+                    <div class="filter__btn">
+                        <button class="btn__searchByName btn__style">Name</button>
+                        <button class="btn__searchByCapital btn__style">Capital</button>
+                        <button class="btn__searchByPop btn__style">Population</button>
+                    </div>
+                    <div class="filteredCountries"></div>
+
+                </div>
+
+            </div>
+
+        </header>
+        <!--header ends here -->
+        <main>
+            <div class="flex-container">
+
+            </div>
+
+        </main>
+        <footer>
+            <div class="page__footer">
+                <div class="page__copyrights">
+                    <p> <strong>Copyright (c) 2020: <a href="https://github.com/obymanyando" target="_blank"
+                                style="text-decoration: none;">Oby
+                                Manyando</a>
+                        </strong>
                     </p>
                 </div>
-            </div>
-
-            <div class="filter">
-                <div class="filter__search">
-                    <input type="text" class="filter__searchField" name="searchField"
-                        placeholder="Seach country by name, city or language">
+                <div class="page__copyrights--txt2">
+                    <p>This file is free software; you can redistribute and/or modify it.</p>
                 </div>
-                <div class="filter__btn">
-                    <button class="btn__searchByName btn__style">Name</button>
-                    <button class="btn__searchByCapital btn__style">Capital</button>
-                    <button class="btn__searchByPop btn__style">Population</button>
-                </div>
-                <div class="filteredCountries"></div>
 
             </div>
 
-        </div>
+        </footer>
 
-    </header>
-    <!--header ends here -->
-    <main>
-        <div class="flex-container">
-
-        </div>
-
-    </main>
-    <footer>
-        <div class="page__footer">
-            <div class="page__copyrights">
-                <p> <strong>Copyright (c) 2020: <a href="https://github.com/obymanyando" target="_blank"
-                            style="text-decoration: none;">Oby
-                            Manyando</a>
-                    </strong>
-                </p>
-            </div>
-            <div class="page__copyrights--txt2">
-                <p>This file is free software; you can redistribute and/or modify it.</p>
-            </div>
-
-        </div>
-
-    </footer>
+    </div> <!-- page container ends here  -->
 
     <script src="./main2.js"></script>
 </body>

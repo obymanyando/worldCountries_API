@@ -7,11 +7,7 @@ const searchByCapital = document.querySelector('.btn__searchByCapital')
 const searchByPop = document.querySelector('.btn__searchByPop')
 const searchField = document.querySelector('.filter__searchField')
 
-// Fetch method to be used in production
-
-
-
-const url = "https://restcountries.eu/rest/v2/all?fields=name;capital;languages;flag"
+const url = "https://restcountries.eu/rest/v2/all?fields=name;capital;languages;flag;population"
 
 fetch(url)
     .then(response => response.json())
@@ -19,26 +15,21 @@ fetch(url)
     {
         /*..... Note to self: this space is too crowded. Globalise all functions possible.... */
         const countries = [...countriesData]
-        countryBuilder(countries)
+        displayCountries(countries)
 
+        /* Function to filter in real time */
         searchField.addEventListener('input', (e) =>
         {
-            searchTerm = searchField.value
-            countriesList = countries.filter((country) =>
-            {
-                return country.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-            })
-            countryBuilder(countriesList)
-            console.log(countriesList)
+            searchTerm = searchField.value.toLowerCase()
+            countriesList = countries.filter((country) => country.name.toLowerCase().startsWith(searchTerm))
+            displayCountries(countriesList)
         })
 
-        const sortByName = () =>
+        /* Function to filter by name */
+        const sortByName = (arr) =>
         {
-            searchTerm = searchField.value
-            countriesList = countries.filter((country) =>
-            {
-                return country.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-            })
+            searchTerm = searchField.value.toLowerCase()
+            countriesList = arr.filter((country) => country.name.toLowerCase().startsWith(searchTerm))
 
             countryCounter.textContent = `The names of countries starting with - ${searchTerm.toUpperCase()} - are: ${countriesList.length}.`
             countryCounter.style.marginBottom = '20px'
@@ -46,10 +37,11 @@ fetch(url)
             countryCounter.style.backgroundColor = '#f2f7f4'
             countryCounter.style.padding = '5px'
 
-            countryBuilder(countriesList.reverse())
+            displayCountries(countriesList)
 
         }
 
+        /* Function to filter by capital city */
         const sortByCapital = () =>
         {
             searchTerm = searchField.value
@@ -57,8 +49,7 @@ fetch(url)
             {
                 return country.capital.toLowerCase().startsWith(searchTerm.toLowerCase())
             })
-            countryBuilder(countriesList)
-
+            displayCountries(countriesList)
 
             countryCounter.textContent = `The number of capital cities starting with - ${searchTerm.toUpperCase()} - is: ${countriesList.length}.`
             countryCounter.style.marginBottom = '20px'
@@ -67,53 +58,69 @@ fetch(url)
             countryCounter.style.padding = '5px'
         }
 
-        const sortByPop = () =>
+        /* Function to sort by population */
+        function sortByPop()
         {
-            countriesList = countries.filter((country) =>
+            countries.sort(function sorter(a, b)
             {
-                return country.population
-            })
-            countryBuilder(countriesList)
+                return b.population - a.population;
+            });
+            displayCountries(countries);
         }
 
+        /* event listeners */
+        // element.addEventListener('click', (e) => {})
 
-        searchByName.addEventListener('click', sortByName)
+        searchByName.addEventListener('click', (e) =>
+        {
+            sortByName(countries)
+        })
         searchByCapital.addEventListener('click', sortByCapital)
-        searchByPop.addEventListener('click', sortByPop)
+
+        searchByPop.addEventListener('click', (e) =>
+        {
+            const sortedStuff = sortByPop
+            sortedStuff(countries)
+        })
     })
 
 /* Function to build HTML */
 
-countryBuilder = (countries) =>
+const displayCountries = (countries) =>
 {
     flexContainer.innerHTML = ''
-
+    /* iterate through object */
     for (const country of countries) {
+
+        /* build html elements */
         let block = document.createElement('div')
         let flag = document.createElement('img')
         let name = document.createElement('h1')
         let capital = document.createElement('p')
         let population = document.createElement('p')
 
+        /* add text content/ innerHTML to elements */
         flag.src = country.flag
         name.textContent = country.name
         capital.textContent = `Capital: ${country.capital}`
-        population.textContent = `Population: ${country.population}`
+        population.textContent = `Population: ${country.population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`
 
+        /* append all elements */
         block.appendChild(flag)
         block.appendChild(name)
         block.appendChild(capital)
         block.appendChild(population)
         flexContainer.appendChild(block)
 
-
+        /* attributes for styling */
         flag.className = 'country__flag'
         capital.className = 'country__capital'
         block.className = 'country__block'
         population.className = 'country__pop'
     }
+    console.log('Country count: ' + countries.length)
 
-    // display total number of countries
+    /* display total number of countries */
     const totalCountries = (countries) =>
     {
         numOfCountries.textContent = countries.length;
@@ -124,8 +131,9 @@ countryBuilder = (countries) =>
     }
     totalCountries(countries)
 
-
 }
+
+
 
 
 

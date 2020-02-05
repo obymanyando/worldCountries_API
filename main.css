@@ -1,13 +1,19 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body {
+html, body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Oxygen, Cantarell, sans-serif;
     height: 100%;
     margin: 0;
     /* font-family: 'Roboto', serif; */
     color: #333;
+}
+.page__container {
+    position: relative;
+    min-height: 100vh;
 }
 
 .flex-container {
@@ -15,6 +21,8 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background-color: #F3F3F3;
+    padding-bottom: 3.5rem;    /* Footer height */
+    
 }
 
 .country__block {
@@ -137,5 +145,15 @@ input:focus {
     background-color: rgb(182, 236, 196);
 }
 .page__footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(117, 136, 139);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3.5rem;            /* Footer height */
     text-align: center;
+    line-height: 1,5rem;
 }

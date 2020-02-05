@@ -43,7 +43,7 @@ const fetchCountries = (arr) =>
                                 <h3>${name.toUpperCase()}</h3>
                                 <p>Capital: ${capital}</p>
                                 <p>Languages: ${langs.join(', ')}</p>
-                                <p>Population: ${population}</p>
+                                <p>Population: ${population.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</p>
                                 </div>`
 
             }
@@ -63,8 +63,6 @@ const fetchCountries = (arr) =>
     console.log(totalCountries.value)
 }
 fetchCountries()
-
-// .toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
 
 
@@ -90,3 +88,12 @@ searchByPopulation.addEventListener('click', filterPop =>
 })
 
 // window.onload = fetchCountries(countries)
+
+// create event listeners for all
+
+// const filterButton = document.querySelector('.filter__btn')
+// filterButton.addEventListener('click', (event) =>
+// {
+
+//     console.log(event.target)
+// })
